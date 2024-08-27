@@ -39,7 +39,6 @@ async function createOrder(req: NextApiRequest, res: NextApiResponse) {
         "https://payments-sand.vercel.app/api/notification_order",
     });
     res.send({
-      mydata: data,
       success: true,
       url: preference.init_point,
     });
