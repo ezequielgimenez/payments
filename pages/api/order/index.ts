@@ -13,15 +13,17 @@ const products = [
   },
 ];
 
-async function createOrder(req: NextApiRequest, res: NextApiResponse, data) {
+async function createOrder(req: NextApiRequest, res: NextApiResponse) {
   const body = req.body;
   const { productId } = req.query as any;
+  const data = (req as any).userData;
   const prod = products.find((i) => {
     return i.id == productId;
   });
   if (!prod) {
     return res.status(404).json({ error: "Producto no encontrado" });
   }
+
   try {
     const myOrder = await Order.create({
       userId: data.id,
@@ -37,6 +39,7 @@ async function createOrder(req: NextApiRequest, res: NextApiResponse, data) {
         "https://payments-sand.vercel.app/api/notification_order",
     });
     res.send({
+      mydata: data,
       success: true,
       url: preference.init_point,
     });
@@ -49,8 +52,7 @@ async function createOrder(req: NextApiRequest, res: NextApiResponse, data) {
 }
 
 const handleOrder = methods({
-  post: (req: NextApiRequest, res: NextApiResponse) =>
-    createOrder(req, res, {}),
+  post: (req: NextApiRequest, res: NextApiResponse) => createOrder(req, res),
 });
 
 export default middleware(handleOrder);

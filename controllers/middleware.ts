@@ -13,6 +13,7 @@ export function middleware(callback) {
         message: "error en el token",
       });
     } else {
+      (req as any).userData = decode;
       callback(req, res, decode);
     }
   };
