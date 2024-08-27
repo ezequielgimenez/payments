@@ -1,0 +1,15 @@
+Marcos Comprador 
+
+usuario: TESTUSER1544120580
+password: vvQvOufVKP
+
+
+Juan Vendedor 
+
+usuario: TESTUSER2044928336
+password: mgmeYbtZqD
+token del vendedor para generar preferencias de pago:
+
+APP_USR-2103876473545280-082120-615b9643271cb4e692ae2d41730d01cb-1958106866
+
+
