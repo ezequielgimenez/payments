@@ -22,6 +22,10 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         where: {
           userId: myUser.get("id"),
         },
+        defaults: {
+          email,
+          // userId: myUser.get("id"),
+        },
       });
     }
     if (myUser) {
