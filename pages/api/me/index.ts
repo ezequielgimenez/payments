@@ -6,7 +6,7 @@ function authMe(req: NextApiRequest, res: NextApiResponse, data) {
   res.send({
     success: true,
     data,
-    message: "data del user",
+    message: "data del usuario",
   });
 }
 
