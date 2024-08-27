@@ -5,4 +5,5 @@ export const Auth = sequelize.define("auth", {
   email: DataTypes.STRING,
   code: DataTypes.STRING,
   expire: DataTypes.DATE,
+  userId: DataTypes.INTEGER,
 });

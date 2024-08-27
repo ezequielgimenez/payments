@@ -18,8 +18,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       },
     });
 
-    // Busca o crea la entrada en Auth de forma separada
-    const [authEntry, authCreated] = await Auth.findOrCreate({
+    const [myAuth, authCreated] = await Auth.findOrCreate({
       where: {
         userId: myUser.get("id"),
       },
@@ -29,24 +28,22 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       },
     });
 
-    const expire = generateDateExpire();
-    const code = generateCode();
-
-    // Actualiza el código y fecha de expiración
-    await Auth.update(
-      {
-        code,
-        expire,
-      },
-      {
-        where: {
-          email,
+    if (myAuth) {
+      const expire = generateDateExpire();
+      const code = generateCode();
+      await Auth.update(
+        {
+          code,
+          expire,
         },
-      }
-    );
-
-    await sendEmail(email, code);
-
+        {
+          where: {
+            email,
+          },
+        }
+      );
+      await sendEmail(email, code);
+    }
     res.send({
       success: true,
       message: "Codigo enviado al email",
