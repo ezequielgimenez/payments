@@ -13,7 +13,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       res.send("No encontro");
     }
   } catch (error) {
-    res.send("Error no encontro user");
+    res.send("Error no encontro userrr");
   }
 
   res.send({});
