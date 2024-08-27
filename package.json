@@ -25,6 +25,9 @@
     "react-dom": "^18",
     "sequelize": "^6.37.3"
   },
+  "engines": {
+    "node": "18.x"
+  },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
