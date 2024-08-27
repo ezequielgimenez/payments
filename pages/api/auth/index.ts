@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { firestore } from "lib/firestore";
-import { Auth } from "models/auth";
-import { User } from "models/user";
+import { User } from "associations/associations";
+import { Auth } from "associations/associations";
+
 import { generateCode } from "lib/generateCode";
 import { generateDateExpire } from "lib/generateExpires";
 import { sendEmail } from "lib/sendEmail";
