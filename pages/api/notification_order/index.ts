@@ -13,7 +13,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
           id,
         },
       });
-      myOrder.update({
+      await myOrder.update({
         status: "paid",
         date: new Date(),
       });

@@ -9,7 +9,7 @@ import { sendEmail } from "lib/sendEmail";
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   const email = req.body.email;
   try {
-    const [userAuth, authCreated] = await Auth.findOrCreate({
+    const [myUser, userCreated] = await User.findOrCreate({
       where: {
         email,
       },
@@ -17,12 +17,14 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         email,
       },
     });
-    if (authCreated) {
-      User.create({
-        email,
+    if (userCreated) {
+      await Auth.findOrCreate({
+        where: {
+          userId: myUser.get("id"),
+        },
       });
     }
-    if (userAuth) {
+    if (myUser) {
       const expire = generateDateExpire();
       const code = generateCode();
       await Auth.update(
