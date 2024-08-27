@@ -24,7 +24,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         },
         defaults: {
           email,
-          // userId: myUser.get("id"),
+          userId: myUser.get("id"),
         },
       });
     }
