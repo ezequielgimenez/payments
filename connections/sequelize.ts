@@ -4,9 +4,7 @@ import { Order } from "models/orders";
 import { Auth } from "models/auth";
 
 // Configura la conexión a la base de datos
-export const sequelize = new Sequelize(
-  "postgresql://postgres.kvleenckljzlfqymqxhq:ye9Aymt9mykOUsKd@aws-0-us-east-1.pooler.supabase.com:6543/postgres"
-);
+export const sequelize = new Sequelize(process.env.TOKEN_SEQUELIZE);
 
 // postgresql://postgres.kvleenckljzlfqymqxhq:ye9Aymt9mykOUsKd@aws-0-us-east-1.pooler.supabase.com:6543/postgres
 async function syncDb() {
