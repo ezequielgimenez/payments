@@ -10,6 +10,18 @@
     "lint": "next lint",
     "back": "nodemon --watch connections/sequelize.ts --exec ts-node connections/sequelize.ts"
   },
+  "ava": {
+    "nodeArguments": [
+      "--loader=@esbuild-kit/esm-loader",
+      "--experimental-specifier-resolution=node"
+    ],
+    "environmentVariables": {
+      "TESTING": "true"
+    },
+    "extensions": {
+      "ts": "module"
+    }
+  },
   "dependencies": {
     "date-fns": "^3.6.0",
     "firebase-admin": "^12.3.1",

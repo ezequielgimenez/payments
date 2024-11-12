@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { middleware } from "controllers/middleware";
-import method from "micro-method-router";
+import methods from "micro-method-router";
 
-function authMe(req: NextApiRequest, res: NextApiResponse, data) {
+function authMe(req: NextApiRequest, res: NextApiResponse) {
+  const data = (req as any).userData;
   res.send({
     success: true,
     data,
@@ -10,4 +11,8 @@ function authMe(req: NextApiRequest, res: NextApiResponse, data) {
   });
 }
 
-export default middleware(authMe);
+const handleOrder = methods({
+  get: (req: NextApiRequest, res: NextApiResponse) => authMe(req, res),
+});
+
+export default middleware(handleOrder);

@@ -34,9 +34,9 @@ async function createOrder(req: NextApiRequest, res: NextApiResponse) {
 
     const preference = await createPreference({
       ...body,
-      external_reference: myOrder.get("id"),
+      external_reference: "abcd123456789",
       notification_url:
-        "https://payments-sand.vercel.app/api/notification_order",
+        "https://webhook.site/03a3179d-fb9f-4737-ad6c-bce019d66ecc",
     });
     res.send({
       success: true,
