@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createPreference } from "lib/mercadopago";
 import { middleware } from "controllers/middleware";
-import { Order } from "associations/associations";
+import { Order } from "connections/sequelize";
 import methods from "micro-method-router";
 
 const products = [

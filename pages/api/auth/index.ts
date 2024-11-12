@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { User } from "associations/associations";
+import { User } from "connections/sequelize";
 import { Auth } from "associations/associations";
 
 import { generateCode } from "lib/generateCode";

@@ -1,7 +1,4 @@
-import { Sequelize } from "sequelize";
-import { User } from "models/user";
-import { Order } from "models/orders";
-import { Auth } from "models/auth";
+import { Sequelize, DataTypes } from "sequelize";
 import pg from "pg";
 
 // Configura la conexión a la base de datos
@@ -10,14 +7,31 @@ export const sequelize = new Sequelize(process.env.TOKEN_SEQUELIZE, {
   dialectModule: pg,
 });
 
-// postgresql://postgres.kvleenckljzlfqymqxhq:ye9Aymt9mykOUsKd@aws-0-us-east-1.pooler.supabase.com:6543/postgres
+export const User = sequelize.define("user", {
+  name: DataTypes.STRING,
+  surname: DataTypes.STRING,
+  email: DataTypes.STRING,
+  phone: { type: DataTypes.JSON },
+  identification: { type: DataTypes.JSON },
+  address: { type: DataTypes.JSON },
+});
+
+export const Order = sequelize.define("order", {
+  product_id: DataTypes.STRING,
+  title: DataTypes.STRING,
+  img: DataTypes.STRING,
+  price: DataTypes.DECIMAL,
+  status: DataTypes.STRING,
+  date: DataTypes.DATE,
+});
+
 async function syncDb() {
   try {
     // Sincroniza todos los modelos con la base de datos
     await sequelize.sync({ alter: true }); // Usar { force: true } eliminará todas las tablas antes de crear nuevas
-    console.log("Database synchronized");
+    console.log("Database sincronizada");
   } catch (error) {
-    console.error("Error synchronizing database:", error);
+    console.error("Error sincronizacion base de datos:", error);
   }
 }
 
